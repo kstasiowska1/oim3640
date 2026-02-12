@@ -12,7 +12,7 @@ def draw_spiral(t):
     Draw one square, turn an angle, then draw another square and so on
     '''
 
-    for i in range(16):
+    for i in range(36):
         draw_square(t, 50 + i * 2)
         t.left(10)
 
