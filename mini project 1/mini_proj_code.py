@@ -34,3 +34,28 @@ def calculate_flip(buy_price, rehab_cost, sell_price):
 
     return total_cost, profit, roi
 
+def rate_deal(profit, roi):
+    """
+    Gives a simple deal rating (GOOD/MAYBE/RISKY) based on profit and ROI.
+    I keep this separate so the rating logic is easy to update later.
+    """
+    reasons = []
+
+    # Profit check
+    if profit > 0:
+        reasons.append("Profit is positive.")
+    else:
+        reasons.append("Profit is negative (you would lose money).")
+        return "RISKY", reasons  # If you lose money, it's automatically risky
+
+    # ROI check
+    if roi >= 15:
+        reasons.append("ROI is strong (15% or higher).")
+        return "GOOD", reasons
+    elif roi >= 5:
+        reasons.append("ROI is okay (between 5% and 15%).")
+        return "MAYBE", reasons
+    else:
+        reasons.append("ROI is low (below 5%).")
+        return "RISKY", reasons
+
