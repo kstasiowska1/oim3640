@@ -58,4 +58,32 @@ def rate_deal(profit, roi):
     else:
         reasons.append("ROI is low (below 5%).")
         return "RISKY", reasons
+    
+def main():
+    """
+    This is the main app. It displays a simple menu and uses a while True
+    loop so the user can analyze multiple deals without restarting the program.
+    It shows menu options, gets user input for menu selection, calls the calculate 
+    functions, formats and prints the results, and exits when the user chooses to quit.
+    """
+    print("House Flip Quick Calculator")
+
+    # This loop keeps the program running until the user chooses to quit
+    while True:
+        print("\nMenu:")
+        print("1) Analyze a deal")
+        print("2) Quit")
+
+        # Get user's menu choice
+        choice = input("Choose 1 or 2: ").strip()
+
+        # If user wants to analyze a deal
+        if choice == "1":
+            # Get financial inputs using the input function
+            buy_price = get_number("Purchase price ($): ")
+            rehab_cost = get_number("Repair cost ($): ")
+            sell_price = get_number("Expected sale price ($): ")
+
+            # Call the calculation function
+            total_cost, profit, roi = calculate_flip(buy_price, rehab_cost, sell_price)
 
