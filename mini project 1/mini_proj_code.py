@@ -87,3 +87,30 @@ def main():
             # Call the calculation function
             total_cost, profit, roi = calculate_flip(buy_price, rehab_cost, sell_price)
 
+            # Display results in a clean format
+            print("\n--- Results ---")
+            print(f"Total cost: ${total_cost:,.2f}")
+            print(f"Profit: ${profit:,.2f}")
+            print(f"ROI: {roi:.2f}%")
+            
+            rating, reasons = rate_deal(profit, roi)
+            
+            print(f"Deal rating: {rating}")
+            for reason in reasons:
+                print(f"- {reason}")
+
+        # If user chooses to quit
+        elif choice == "2":
+            print("Goodbye.")
+            break  # Stops the while loop and ends the program
+
+        # If user types something invalid
+        else:
+            print("Invalid choice. Please enter 1 or 2.")
+
+
+# Runs the program
+if __name__ == "__main__":
+    main()
+
+
