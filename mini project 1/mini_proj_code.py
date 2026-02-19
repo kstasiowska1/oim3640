@@ -1,3 +1,20 @@
+def get_number(prompt):
+    """
+    Asks the user for a number and keeps asking until they enter a valid number.
+    It uses a while True loop, which means the code will keep running until we
+    manually stop it by returning a number. Inside the loop, we try to convert
+    the input into a float. If it works, we return the number and exit the loop.
+    If it fails (for example if the user types "abc"), the except block catches
+    the error and asks the user to try again instead of crashing the program.
+    """
+
+    while True:
+        text = input(prompt).strip().replace(",", "")
+        try:
+            return float(text)
+        except ValueError:
+            print("Please enter a valid number (example: 250000 or 250,000).")
+
 def calculate_flip(buy_price, rehab_cost, sell_price):
     """
     Calculates total project cost, profit, and ROI for a house flip. 
@@ -16,3 +33,4 @@ def calculate_flip(buy_price, rehab_cost, sell_price):
         roi = 0
 
     return total_cost, profit, roi
+
