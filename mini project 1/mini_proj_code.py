@@ -71,12 +71,15 @@ def rate_deal(profit, roi):
     
 def main():
     """
-    This is the main app. It displays a simple menu and uses a while True
-    loop so the user can analyze multiple deals without restarting the program.
-    It shows menu options, gets user input for menu selection, calls the calculate 
-    functions, formats and prints the results, and exits when the user chooses to quit.
+    This is the main app. It displays a welcome message explaning the tool, a simple 
+    menu and uses a while True loop so the user can analyze multiple deals without 
+    restarting the program. It shows menu options, gets user input for menu selection,
+    calls the calculate functions, formats and prints the results, and exits when the 
+    user chooses to quit.
     """
-    print("House Flip Quick Calculator")
+    
+    print("\nWelcome to the House Flip Deal Analyzer!")
+    print("This tool estimates profit, ROI, and gives a simple deal rating.")
 
     # This loop keeps the program running until the user chooses to quit
     while True:
