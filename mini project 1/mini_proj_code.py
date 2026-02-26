@@ -14,7 +14,7 @@ def get_number(prompt):
         try:
             value = float(text)
             if value < 0:
-                print("Please enter a positive number.")
+                print("Please enter a number 0 or greater.")
             else:
                 return value
         except ValueError:
@@ -33,7 +33,7 @@ def calculate_flip(buy_price, rehab_cost, sell_price):
     selling_cost_rate = 0.06 # 6% selling costs (agent fees, closing costs, etc.)
     selling_costs = sell_price * selling_cost_rate
     
-    total_cost = buy_price + rehab_cost +selling_costs
+    total_cost = buy_price + rehab_cost + selling_costs
     profit = sell_price - total_cost
 
     # ROI = profit / total cost (as a percent) and check total_cost > 0 just to be safe
@@ -77,7 +77,7 @@ def main():
     calls the calculate functions, formats and prints the results, and exits when the 
     user chooses to quit.
     """
-    
+
     print("\nWelcome to the House Flip Deal Analyzer!")
     print("This tool estimates profit, ROI, and gives a simple deal rating.")
 
@@ -108,7 +108,7 @@ def main():
             
             rating, reasons = rate_deal(profit, roi)
             
-            print(f"Deal rating: {rating}")
+            print(f"\Deal rating: {rating}")
             for reason in reasons:
                 print(f"- {reason}")
 
