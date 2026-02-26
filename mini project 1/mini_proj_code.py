@@ -20,10 +20,15 @@ def calculate_flip(buy_price, rehab_cost, sell_price):
     Calculates total project cost, profit, and ROI for a house flip. 
     It adds purchase price + repair costs to get the total cost, 
     subtracts total cost from the expected sale price to get profit,
-    and calculates ROI as a percentage. I can update the math here if
-    I want to add more costs later wihout changing the rest of the code.
+    and calculates ROI as a percentage. It includes a 6% selling cost 
+    to account for various selling costs that are usually included when 
+    selling a property. I can update the math here if I want to add more 
+    costs later wihout changing the rest of the code.
     """
-    total_cost = buy_price + rehab_cost
+    selling_cost_rate = 0.06 # 6% selling costs (agent fees, closing costs, etc.)
+    selling_costs = sell_price * selling_cost_rate
+    
+    total_cost = buy_price + rehab_cost +selling_costs
     profit = sell_price - total_cost
 
     # ROI = profit / total cost (as a percent) and check total_cost > 0 just to be safe
