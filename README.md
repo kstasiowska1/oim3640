@@ -5,3 +5,7 @@ This is my course repository for OIM3640.
 - **Name**: Kamila Stasiowska
 - **Concentration**: Business Analytics
 - **Interests**: Tennis, Travel, Analytics, Puzzles
+
+## My Projects
+- [First Project](./mini%20project%201/mini_proj_code.py)
+
