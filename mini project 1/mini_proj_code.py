@@ -108,7 +108,7 @@ def main():
             
             rating, reasons = rate_deal(profit, roi)
             
-            print(f"\Deal rating: {rating}")
+            print(f"\nDeal rating: {rating}")
             for reason in reasons:
                 print(f"- {reason}")
 
