@@ -1,3 +1,10 @@
+# Importing Rich library
+from rich.console import Console
+from rich.table import Table
+from rich.panel import Panel
+
+console = Console()
+
 def get_number(prompt):
     """
     Asks the user for a number and keeps asking until they enter a valid positive
@@ -59,6 +66,7 @@ def rate_deal(profit, roi):
         return "RISKY", reasons  # If you lose money, it's automatically risky
 
     # ROI check
+
     if roi >= 15:
         reasons.append("ROI is strong (15% or higher).")
         return "GOOD", reasons
@@ -71,21 +79,30 @@ def rate_deal(profit, roi):
     
 def main():
     """
-    This is the main app. It displays a welcome message explaning the tool, a simple 
+    This is the main app. It displays a welcome message explaining the tool, a simple 
     menu and uses a while True loop so the user can analyze multiple deals without 
     restarting the program. It shows menu options, gets user input for menu selection,
     calls the calculate functions, formats and prints the results, and exits when the 
     user chooses to quit.
     """
 
-    print("\nWelcome to the House Flip Deal Analyzer!")
-    print("This tool estimates profit, ROI, and gives a simple deal rating.")
+    console.print(
+        Panel(
+            "Welcome to the House Flip Deal Analyzer!\n"
+            "This tool estimates profit, ROI, and gives a simple deal rating.",
+            title="House Flip App",
+            border_style="green"
+        )
+    )
+
+    # A list to store the deals the user analyzed
+    deals = []
 
     # This loop keeps the program running until the user chooses to quit
     while True:
-        print("\nMenu:")
-        print("1) Analyze a deal")
-        print("2) Quit")
+        console.print("\n[bold cyan]Menu:[/bold cyan]")
+        console.print("1) Analyze a deal")
+        console.print("2) Quit")
 
         # Get user's menu choice
         choice = input("Choose 1 or 2: ").strip()
@@ -99,27 +116,64 @@ def main():
 
             # Call the calculation function
             total_cost, profit, roi = calculate_flip(buy_price, rehab_cost, sell_price)
-
-            # Display results in a clean format
-            print("\n--- Results ---")
-            print(f"Total cost: ${total_cost:,.2f}")
-            print(f"Profit: ${profit:,.2f}")
-            print(f"ROI: {roi:.2f}%")
-            
             rating, reasons = rate_deal(profit, roi)
-            
-            print(f"\nDeal rating: {rating}")
-            for reason in reasons:
-                print(f"- {reason}")
 
-        # If user chooses to quit
+            if rating == "GOOD":
+                rating_style = "bold green"
+            elif rating == "MAYBE":
+                rating_style = "bold yellow"
+            else:
+                rating_style = "bold red"
+
+            table = Table(title="Deal Results")
+            table.add_column("Metric", style="bold")
+            table.add_column("Value")
+
+            table.add_row("Total cost", f"${total_cost:,.2f}")
+            table.add_row("Profit", f"${profit:,.2f}")
+            table.add_row("ROI", f"{roi:.2f}%")
+            table.add_row("Rating", f"[{rating_style}]{rating}[/{rating_style}]")
+
+            console.print(table)
+
+            deal = {
+                "purchase_price": buy_price,
+                "repair_cost": rehab_cost,
+                "sale_price": sell_price,
+                "total_cost": total_cost,
+                "profit": profit,
+                "roi": roi,
+                "rating": rating
+            }
+
+            deals.append(deal)
+            
+            console.print(f"\n[bold]Deal rating:[/bold] [{rating_style}]{rating}[/{rating_style}]")
+            for reason in reasons:
+                console.print(f"- {reason}")
+
+        # If user chooses to quit, a session summary shows up of the deals they analyzed
         elif choice == "2":
-            print("Goodbye.")
+            console.print("\n[bold blue]Session Summary:[/bold blue]")
+
+            if len(deals) == 0:
+                console.print("No deals were analyzed.")
+            else:
+                console.print(f"You analyzed {len(deals)} deal(s).")
+
+                total_roi = 0
+                for d in deals:
+                    total_roi += d["roi"]
+
+                avg_roi = total_roi / len(deals)
+                console.print(f"Average ROI: {avg_roi:.2f}%")
+
+            console.print("\nGoodbye.")
             break  # Stops the while loop and ends the program
 
         # If user types something invalid
         else:
-            print("Invalid choice. Please enter 1 or 2.")
+            console.print("[bold red]Invalid choice. Please enter 1 or 2.[bold red]")
 
 
 # Runs the program
