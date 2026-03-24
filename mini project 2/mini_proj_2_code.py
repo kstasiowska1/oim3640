@@ -45,3 +45,31 @@ def get_top_words(word_counts, top_n=10):
     """
     sorted_words = sorted(word_counts.items(), key=lambda item: item[1], reverse=True)
     return sorted_words[:top_n]
+
+#based on the words, can I categorize and listing as GOOD/OKAY/RISKY
+
+def main():
+    """
+    This is the main app. It loads the text file, cleans and splits the text,
+    counts word frequencies, and prints the top 10 words along with basic stats.
+    """
+    print("Real Estate Listing Text Analyzer")
+
+    file_name = "real_estate_listings.txt"
+
+    text = load_text(file_name)
+    words = clean_and_split_text(text)
+    word_counts = count_words(words)
+    top_words = get_top_words(word_counts)
+
+    print("\n--- Basic Stats ---")
+    print(f"Total words: {len(words)}")
+    print(f"Unique words: {len(word_counts)}")
+
+    print("\n--- Top 10 Most Common Words ---")
+    for word, count in top_words:
+        print(f"{word}: {count}")
+
+
+if __name__ == "__main__":
+    main()
