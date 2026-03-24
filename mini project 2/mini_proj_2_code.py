@@ -22,3 +22,18 @@ def clean_and_split_text(text):
     text = text.replace(";", "")
     words = text.split()
     return words
+
+def count_words(words):
+    """
+    Counts how many times each word appears using a dictionary.
+    This makes it easy to track word frequencies across the full text.
+    """
+    word_counts = {}
+
+    for word in words:
+        if word in word_counts:
+            word_counts[word] += 1
+        else:
+            word_counts[word] = 1
+
+    return word_counts
