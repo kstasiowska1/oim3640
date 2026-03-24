@@ -37,3 +37,11 @@ def count_words(words):
             word_counts[word] = 1
 
     return word_counts
+
+def get_top_words(word_counts, top_n=10):
+    """
+    Sorts the dictionary by frequency from highest to lowest.
+    It returns the top words so I can see which words appear the most.
+    """
+    sorted_words = sorted(word_counts.items(), key=lambda item: item[1], reverse=True)
+    return sorted_words[:top_n]
