@@ -1,11 +1,23 @@
+import pandas as pd
 
-def load_text(file_name):
+def load_excel_data(file_name):
     """
-    Opens a text file and returns all of its contents as one string.
-    I keep this separate so the program can load text first before analyzing it.
+    Opens the Excel file and returns it as a data frame.
+    I keep this separate so the program can load the listing data first
+    before analyzing it.
     """
-    with open(file_name, "r", encoding="utf-8") as file:
-        return file.read()
+    df = pd.read_excel(r"C:\Users\kstasiowska1\OneDrive - Babson College\Documents\GitHub\oim3640\mini project 2\west_hartford_zillow_database.xlsx")
+    return df
+
+def combine_descriptions(df):
+    """
+    Takes the full description column from the excel file, removes empty
+    cells, and combines all descriptions into one string. This lets me analyze
+    all listing description together.
+    """
+    descriptions = df["Full Description"].dropna()
+    full_text = " ".join(descriptions)
+    return full_text
 
 def clean_and_split_text(text):
     """
