@@ -58,23 +58,65 @@ def get_top_words(word_counts, top_n=10):
     sorted_words = sorted(word_counts.items(), key=lambda item: item[1], reverse=True)
     return sorted_words[:top_n]
 
-#based on the words, can I categorize and listing as GOOD/OKAY/RISKY
+def categorize_listing(description):
+    """
+    Looks for positive and regative real estate words in listing descriptions.
+    Based on the words found, it labels the listing as GOOD, MAYBE, or RISKY.
+    """
+    if not isinstance(description, str):
+        return "MAYBE"
+
+    description = description.lower()
+
+    good_words = [
+        "updated", "renovated", "move-in ready", "remodeled", "spacious",
+        "hardwood", "modern", "beautiful", "charming", "great location"
+    ]
+
+    risky_words = [
+        "as-is", "needs work", "investor", "tlc", "repair",
+        "fixer", "unfinished", "damage"
+    ]
+
+    good_score = 0
+    risky_score = 0
+
+    for word in good_words:
+        if word in description:
+            good_score += 1
+
+    for word in risky_words:
+        if word in description:
+            risky_score += 1
+
+    if risky_score >= 2:
+        return "RISKY"
+    elif good_score >= 2 and risky_score == 0:
+        return "GOOD"
+    else:
+        return "MAYBE" 
 
 def main():
     """
     This is the main app. It loads the text file, cleans and splits the text,
     counts word frequencies, and prints the top 10 words along with basic stats.
+    It also creates a basic GOOD/MAYBE/RISKY category for each listing.
     """
     print("Real Estate Listing Text Analyzer")
 
-    file_name = "real_estate_listings.txt"
+    file_name = r"C:\Users\kstasiowska1\OneDrive - Babson College\Documents\GitHub\oim3640\mini project 2\west_hartford_zillow_database.xlsx"
+    df = load_excel_data(file_name)
 
-    text = load_text(file_name)
-    words = clean_and_split_text(text)
+    print("\n--- Column Names ---")
+    print(df.columns)
+
+    full_text = combine_descriptions(df)
+    words = clean_and_split_text(full_text)
     word_counts = count_words(words)
     top_words = get_top_words(word_counts)
 
     print("\n--- Basic Stats ---")
+    print(f"Number of listings: {len(df)}")
     print(f"Total words: {len(words)}")
     print(f"Unique words: {len(word_counts)}")
 
@@ -82,6 +124,14 @@ def main():
     for word, count in top_words:
         print(f"{word}: {count}")
 
+    df["Category"] = df["Full Description"].apply(categorize_listing)
+
+    print("\n--- Listing Categories ---")
+    for index, row in df.iterrows():
+        print(f"{row['Address']}: {row['Category']}")
+
+    df.to_excel("updated_real_estate_analysis.xlsx", index=False)
+    print("\nUpdated file saved as updated_real_estate_analysis.xlsx")
 
 if __name__ == "__main__":
     main()
