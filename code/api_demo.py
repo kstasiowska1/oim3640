@@ -1,6 +1,6 @@
-import os
-
-import requests
+# import os
+# from dotenv import load_dotenv
+# import requests
 
 # response = requests.get(
 #     'https://oim.108122.xyz/words/random',
@@ -60,11 +60,16 @@ import requests
 # for person in data['people']:
 #     print(f"{person['name']} on {person['craft']}") 
 
-os.getenv('OPENWEATHER_API_KEY')
-url = (f'https://api.openweathermap.org/data/2.5/weather?q=Boston,US&appid={os.getenv("OPENWEATHER_API_KEY")}&units=imperial')
+# Getting the boston weather
+# load_dotenv()
+# API_KEY = os.getenv("OPEN_WEATHER_API_KEY")
+# url = (f'https://api.openweathermap.org/data/2.5/weather?q=Boston,US&appid={API_KEY}&units=imperial')
 
-print(url)
-data = requests.get(url).json()
-print(f"The current temperature in Boston is {data['main']['temp']}°F")
+# print(url)
+# data = requests.get(url).json()
+# print(f"The current temperature in Boston is {data['main']['temp']}°F")
 
-              
+
+
+
+
