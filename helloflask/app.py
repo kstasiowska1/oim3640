@@ -12,6 +12,14 @@ def search():
     place = request.form["place"]
 
     latitude, longitude = get_coordinates(place)
+
+    if latitude is None or longitude is None:
+        return render_template(
+            "results.html",
+            place=place,
+            station="Location not found"
+        )
+
     station = find_nearest_station(latitude, longitude)
 
     return render_template("results.html", place=place, station=station)
