@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from mbta_helper import get_corrdinates, find_nearest_station
+from mbta_helper import get_coordinates, find_nearest_station
 
 app = Flask(__name__)
 
@@ -13,7 +13,7 @@ def search():
 
     latitude, longitude = get_coordinates(place)
     station = find_nearest_station((latitude, longitude))
-    
+
     return render_template('results.html', place=place, station=station)
 
 if __name__ == "__main__":
