@@ -1,5 +1,9 @@
-<h1>Place Search</h1>
-<form method="POST" action="/search">
-    <input type="text" name="place" placeholder="e.g., Boston Common">
-    <button type="submit">Search</button>
-</form>
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Nearest MBTA Station Finder</h1>
+    <form method="POST" action="/search">
+        <input type="text" name="place" placeholder="e.g., Boston Common" required>
+        <button type="submit">Search</button>
+    </form>
+{% endblock %}
