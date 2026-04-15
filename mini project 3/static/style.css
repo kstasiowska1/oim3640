@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #003366;
+    padding: 15px 30px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.card {
+    background-color: white;
+    width: 100%;
+    max-width: 700px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+h1 {
+    color: #003366;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #555;
+    margin-bottom: 25px;
+}
+
+input[type="text"] {
+    width: 70%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px 20px;
+    margin-left: 10px;
+    background-color: #0074cc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #005fa3;
+}
+
+.result-text {
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+.station-name {
+    color: #008000;
+    font-weight: bold;
+}
+
+.map-image {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 25px;
+    color: #0074cc;
+    text-decoration: none;
+    font-weight: bold;
+}

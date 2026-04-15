@@ -1,7 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Results for {{ place }}</h1>
-    <p>The nearest MBTA station is: <strong>{{ station }}</strong></p>
-    <a href="/">Search again</a>
+    <div class="card">
+        <h1>Results for {{ place }}</h1>
+
+        <p class="result-text">
+            The nearest MBTA station is:
+            <span class="station-name">{{ station }}</span>
+        </p>
+
+        {% if map_url %}
+            <img class="map-image" src="{{ map_url }}" alt="Map showing {{ place }}">
+        {% endif %}
+
+        <a class="back-link" href="/">Search again</a>
+    </div>
 {% endblock %}
