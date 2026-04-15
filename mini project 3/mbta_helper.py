@@ -6,29 +6,6 @@ load_dotenv()
 MAPBOX_API_KEY = os.getenv("MAPBOX_API_KEY")
 MBTA_API_KEY = os.getenv("MBTA_API_KEY")
 
-
-# def get_coordinates(place):
-#     """
-#     Takes a place name and uses the Mapbox API to return its latitude and longitude.
-#     I keep this in a helper file so the API logic stays separate from the Flask routes.
-#     """
-#     url = f"https://api.mapbox.com/geocoding/v5/mapbox.places/{place}.json"
-#     params = {
-#         "access_token": MAPBOX_API_KEY,
-#         "limit": 1
-#     }
-    
-#     response = requests.get(url, params=params)
-#     data = response.json()
-    
-#     if "features" in data and len(data["features"]) > 0:
-#         coordinates = data["features"][0]["center"]
-#         longitude = coordinates[0]
-#         latitude = coordinates[1]
-#         return latitude, longitude
-#     else:
-#         return None, None
-
 def get_coordinates(place):
     """
     Takes a place name and uses the Mapbox API to return its latitude and longitude.
