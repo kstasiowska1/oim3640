@@ -52,3 +52,23 @@
 - Even simple projects can be improved with better organization and clarity  
 - It is important to focus on understanding the code, not just getting it to work  
 - Being able to explain your project clearly is just as important as writing the code  
+
+
+## Date: 2026-04-15
+**What I asked AI to do:**
+- Help me make my project more interactive instead of just printing results  
+- Help me restructure the program to use a menu system similar to Project 1  
+- Help me add new features like keyword search and top words by category  
+- Help me remove common stop words to improve the quality of the analysis  
+- Help me improve the formatting and add color using the Rich library  
+
+**What I didn't understand in the generated code:**
+- I wasn’t fully sure how the menu loop structure should be organized at first
+- I didn’t completely understand how the stop word filtering changed the results
+- I was unsure how the Rich library formatted output differently than print statements
+
+**What I learned:**
+- Adding a menu makes a program more interactive and easier for a user to explore
+- Removing stop words makes text analysis more meaningful and less repetitive
+- You can build on an existing project without starting over by adding features step by step
+- The Rich library can improve how output looks without changing the core logic
