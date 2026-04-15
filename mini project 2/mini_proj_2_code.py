@@ -1,5 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from rich.console import Console
+from rich.table import Table
+from rich.panel import Panel
+
+console = Console()
 
 def load_excel_data(file_name):
     """
@@ -204,7 +209,13 @@ def main():
     listing descriptions, counts word frequencies, and gives the user a menu
     of different text analysis options to choose from.
     """
-    print("Real Estate Listing Text Explorer")
+    console.print(
+    Panel(
+        "Real Estate Listing Text Explorer\nAnalyze listing descriptions, search keywords, and compare patterns.",
+        title="Mini Project 2",
+        border_style="blue"
+    )
+)
 
     file_name = r"C:\Users\kstasiowska1\OneDrive - Babson College\Documents\GitHub\oim3640\mini project 2\west_hartford_zillow_database.xlsx"
 
@@ -215,28 +226,36 @@ def main():
     word_counts = count_words(words)
 
     while True:
-        print("1) Show basic stats")
-        print("2) Show top 10 most common words")
-        print("3) Search for a keyword")
-        print("4) Show a bar chart of top 10 words")
-        print("5) Show top words by category")
-        print("6) Show category count chart")
-        print("7) Quit")
+        console.print("\n[bold cyan]Menu:[/bold cyan]")
+        console.print("1) Show basic stats")
+        console.print("2) Show top 10 most common words")
+        console.print("3) Search for a keyword")
+        console.print("4) Show a bar chart of top 10 words")
+        console.print("5) Show top words by category")
+        console.print("6) Show category count chart")
+        console.print("7) Quit")
 
         choice = input("Choose 1, 2, 3, 4, 5, 6, or 7: ").strip()
 
         if choice == "1":
-            print("\n--- Basic Stats ---")
-            print(f"Number of listings: {len(df)}")
-            print(f"Total words: {len(words)}")
-            print(f"Unique words: {len(word_counts)}")
+            console.print("\n[bold green]--- Basic Stats ---[/bold green]")
+            console.print(f"Number of listings: [bold]{len(df)}[/bold]")
+            console.print(f"Total words: [bold]{len(words)}[/bold]")
+            console.print(f"Unique words: [bold]{len(word_counts)}[/bold]")
+            console.print()
 
         elif choice == "2":
             top_words = get_top_words(word_counts)
 
-            print("\n--- Top 10 Most Common Words ---")
+            table = Table(title="Top 10 Most Common Words")
+            table.add_column("Word", style="bold blue")
+            table.add_column("Count", style="bold")
+
             for word, count in top_words:
-                print(f"{word}: {count}")
+                table.add_row(word, str(count))
+
+            console.print(table)
+            console.print()
 
         elif choice == "3":
             keyword = input("Enter a keyword to search for: ").strip().lower()
@@ -244,12 +263,15 @@ def main():
             total_count = search_keyword_in_text(word_counts, keyword)
             listing_count = count_listings_with_keyword(df, keyword)
 
-            print(f"\nThe word '{keyword}' appears {total_count} time(s) in the full text.")
-            print(f"It appears in {listing_count} listing(s).")
+            console.print(f"\n[bold yellow]Keyword:[/bold yellow] '{keyword}'")
+            console.print(f"It appears [bold]{total_count}[/bold] time(s) in the full text.")
+            console.print(f"It appears in [bold]{listing_count}[/bold] listing(s).")
+            console.print()
 
         elif choice == "4":
             top_words = get_top_words(word_counts)
             plot_top_words(top_words)
+            print()
 
         elif choice == "5":
             category = input("Enter a category (GOOD, MAYBE, or RISKY): ").strip().upper()
@@ -262,19 +284,28 @@ def main():
                 if len(top_words) == 0:
                     print(f"\nNo listings found in category '{category}'.")
                 else:
-                    print(f"\n--- Top Words in {category} Listings ---")
+                    table = Table(title=f"Top Words in {category} Listings")
+                    table.add_column("Word", style="bold magenta")
+                    table.add_column("Count", style="bold")
+
                     for word, count in top_words:
-                        print(f"{word}: {count}")
-        
+                        table.add_row(word, str(count))
+
+                    console.print(table)
+                    console.print()
+
         elif choice == "6":
             plot_category_counts(df)
+            print()
 
         elif choice == "7":
-            print("Goodbye.")
+            console.print("[bold green]Goodbye![/bold green]")
             break
+            print()
 
         else:
-            print("Invalid choice. Please enter 1, 2, 3, 4, 5, 6, or 7.")
+            console.print("[bold red]Invalid choice. Please enter 1, 2, 3, 4, 5, 6, or 7.[/bold red]")
+            print()
 
 
 if __name__ == "__main__":
