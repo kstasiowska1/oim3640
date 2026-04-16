@@ -23,7 +23,7 @@ def search():
             "results.html",
             place=place,
             station="Location not found",
-            map_urp=None
+            map_url=None
         )
 
     station = find_nearest_station(latitude, longitude)
