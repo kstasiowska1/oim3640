@@ -13,4 +13,4 @@ This is my course repository for OIM3640.
 
 - [Third Project](./mini%20project%203/app.py) - This is a Flask web app that takes a user’s location input and finds the nearest MBTA station and shows it on a map using the Mapbox and MBTA APIs. It can be run by navigating to the project folder and executing 'python app.py' or going to https://kstasiowska1.pythonanywhere.com/.
 
-- [Final Project]
+- [Final Project](https://github.com/kstasiowska1/oim3640-final-project/blob/main/app.py) - This is a Flask web app that allows users to search real estate listings by location and analyze potential house flipping deals by calculating total cost, profit, ROI, and a deal rating (strong, moderate, or risky). It can be run by navigating to the project folder and executing 'python app.py' or visiting the deployed site at https://oim3640-final-project.onrender.com.
